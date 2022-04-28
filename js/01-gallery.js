@@ -3,14 +3,34 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
+// 1. Створення і рендер розмітки на підставі масиву даних galleryItems і наданого шаблону елемента галереї
+
+const galleryRef = document.querySelector('.gallery');
+
+const galleryMarkup = galleryItems.map(({ preview, original, description }) => {
+  return `
+  <div class="gallery__item">
+   <a class="gallery__link" href="${original}">
+    <img class="gallery__image" src="${preview}" data-source="large-image.jpg" alt="${description}" />
+   </a>
+  </div>
+  `
+}).join('');
+
+galleryRef.insertAdjacentHTML('afterbegin', galleryMarkup);
+
+// 2. Реалізація делегування на div.gallery і отримання url великого зображення.
+
+galleryRef.addEventListener('click', handlerGalleryRefClick);
+function handlerGalleryRefClick() { };
 
 // Завдання 1 - галерея зображень ============================================================================
 
 // Створи галерею з можливістю кліку по її елементах і перегляду повнорозмірного зображення у модальному вікні. 
 // Подивися демо відео роботи галереї.
 
-// Виконуй це завдання у файлах 01-gallery.html і 01-gallery.js. Розбий його на декілька підзавдань:
-
+// Виконуй це завдання у файлах 01-gallery.html і 01-gallery.js.
+// Розбий його на декілька підзавдань:
 // 1. Створення і рендер розмітки на підставі масиву даних galleryItems і наданого шаблону елемента галереї.
 // 2. Реалізація делегування на div.gallery і отримання url великого зображення.
 // 3. Підключення скрипту і стилів бібліотеки модального вікна basicLightbox. 
@@ -40,4 +60,5 @@ console.log(galleryItems);
 // Закриття з клавіатури
 // УВАГА: Наступний функціонал не обов'язковий для здавання завдання, але буде хорошою додатковою практикою.
 // Додай закриття модального вікна після натискання клавіші Escape. 
-// Зроби так, щоб прослуховування клавіатури було тільки доти, доки відкрите модальне вікно.Бібліотекаи basicLightbox містить метод для програмного закриття модального вікна.
+// Зроби так, щоб прослуховування клавіатури було тільки доти, доки відкрите модальне вікно.
+// Бібліотекаи basicLightbox містить метод для програмного закриття модального вікна.
