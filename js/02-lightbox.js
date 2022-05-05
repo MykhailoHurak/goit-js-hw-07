@@ -3,6 +3,22 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
+const galleryList = document.querySelector('.gallery');
+const itemsMarkup = galleryItems.map(({ preview, original, description }) => {
+  return `
+    <a class="gallery__item" href="${original}">
+      <img class="gallery__image" src="${preview}" alt="${description}" />
+    </a>
+  `
+}).join('');
+
+galleryList.insertAdjacentHTML('afterbegin', itemsMarkup);
+
+let gallery = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 
 // Завдання 2 - бібліотека SimpleLightbox ====================================================================
 
